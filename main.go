@@ -40,6 +40,11 @@ func main() {
 	content := os.Getenv("PLUGIN_CONTENT")
 	mentionedList := strings.Split(os.Getenv("PLUGIN_MENTIONED_LIST"), ",")
 	mentionedMobileList := strings.Split(os.Getenv("PLUGIN_MENTIONED_MOBILE_LIST"), ",")
+	msgType := os.Getenv("PLUGIN_MSG_TYPE")
+
+	if msgType == "" {
+		msgType = "text"
+	}
 
 	if url == "" {
 		if key == "" {
@@ -61,7 +66,7 @@ func main() {
 
 	data := TextMessagePayload{}
 
-	data.Msgtype = "text"
+	data.Msgtype = msgType
 	data.Text = text
 
 	payload, err := json.Marshal(data)
