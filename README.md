@@ -1,2 +1,3 @@
-# wechat-work-alert
-A alert robot for wechat work.
+# drone-wechat-work
+
+A drone plugin to push messages to WeChat Work with robot api.
