@@ -83,13 +83,14 @@ func main() {
 	}
 
 	resp, err := http.Post(url, "application/json", bytes.NewReader(payload))
-	defer resp.Body.Close()
 
 	log.Printf("Request  %v", string(payload))
 
 	if err != nil {
 		log.Fatalln(err)
 	}
+
+	defer resp.Body.Close()
 
 	if resp != nil {
 		body, err := ioutil.ReadAll(resp.Body)
