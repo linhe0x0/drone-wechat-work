@@ -55,7 +55,14 @@ func main() {
 	}
 
 	if content == "" {
-		log.Fatalln(errors.New("Error: Content is missed."))
+		content = fmt.Sprintf(
+			"Task triggered by commit on the %v branch of repo %v was %v.\n\nCommit Author: %v\nCommit Message: %v",
+			os.Getenv("DRONE_COMMIT_BRANCH"),
+			os.Getenv("DRONE_REPO_NAME"),
+			os.Getenv("DRONE_BUILD_STATUS"),
+			os.Getenv("DRONE_COMMIT_AUTHOR"),
+			os.Getenv("DRONE_COMMIT_MESSAGE"),
+		)
 	}
 
 	text := TextMessage{
