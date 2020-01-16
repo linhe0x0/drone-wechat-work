@@ -41,9 +41,19 @@ func main() {
 	mentionedList := strings.Split(os.Getenv("PLUGIN_MENTIONED_LIST"), ",")
 	mentionedMobileList := strings.Split(os.Getenv("PLUGIN_MENTIONED_MOBILE_LIST"), ",")
 	msgType := os.Getenv("PLUGIN_MSG_TYPE")
+	buildStatus := os.Getenv("DRONE_BUILD_STATUS")
 
 	if msgType == "" {
 		msgType = "text"
+	}
+
+	emoji := "🙄"
+
+	switch buildStatus {
+	case "success":
+		emoji = "😎"
+	case "failure":
+		emoji = "💊"
 	}
 
 	if url == "" {
@@ -56,7 +66,8 @@ func main() {
 
 	if content == "" {
 		content = fmt.Sprintf(
-			"Task triggered by commit on the %v branch of repo %v was %v.\n\nCommit Author: %v\nCommit Message: %v",
+			"%s Task triggered by commit on the %v branch of repo %v was %v.\n\nCommit Author: %v\nCommit Message: %v",
+			emoji,
 			os.Getenv("DRONE_COMMIT_BRANCH"),
 			os.Getenv("DRONE_REPO_NAME"),
 			os.Getenv("DRONE_BUILD_STATUS"),
