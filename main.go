@@ -71,7 +71,7 @@ func main() {
 			os.Getenv("DRONE_COMMIT_BRANCH"),
 			os.Getenv("DRONE_REPO_NAME"),
 			os.Getenv("DRONE_BUILD_STATUS"),
-			os.Getenv("DRONE_COMMIT_AUTHOR"),
+			os.Getenv("DRONE_COMMIT_AUTHOR_NAME"),
 			os.Getenv("DRONE_COMMIT_MESSAGE"),
 		)
 	}
